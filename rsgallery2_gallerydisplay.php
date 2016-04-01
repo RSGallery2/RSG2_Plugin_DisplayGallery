@@ -29,6 +29,9 @@ $lang->load('com_rsgallery2', JPATH_SITE);
 
 // Initialize RSGallery2 
 require_once( JPATH_ROOT.'/administrator/components/com_rsgallery2/init.rsgallery2.php' );
+// ToDo: Remove following line
+//require_once( JPATH_ROOT.'/administrator/components/com_rsgallery2/helpers/parameter.php' );
+
 /**
  * Class plgContentRsgallery2_gallerydisplay
  */
@@ -103,7 +106,14 @@ class plgContentRsgallery2_gallerydisplay extends JPlugin {
 		$app = JFactory::getApplication();
 
 		try {	
-			$pluginDebug = $this->params->get('debug', '0');
+			// ToDo: There may be a new way to fetch the Plugin parameters (Get rid of JParameters)
+			// Get the plugin parameters
+			// $pluginName = 'rsgallery2_gallerydisplay';
+			// $plugin = JPluginHelper::getPlugin('content', $pluginName);
+			// Parameters
+			//$pluginParams = new JParameter( $plugin->params );
+			//$pluginDebug = $pluginParams->get('debug', '0');
+            $pluginDebug = $this->params->get('debug', '0');
 
             // Save the default configuration because a user might change the
 			// parameters via the plugin but can also use the plugin multiple
@@ -142,7 +152,7 @@ class plgContentRsgallery2_gallerydisplay extends JPlugin {
 
 				
 				// Get attributes from matches and create array
-				$attribs = explode(",", $matches[1]);
+				$attribs = explode(",",$matches[1]);
 				if ( is_array( $attribs ) ) {
 					$clean_attribs = array ();
 					foreach ( $attribs as $attributes ) {
