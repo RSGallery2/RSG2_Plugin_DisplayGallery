@@ -1,17 +1,16 @@
 <?php
 /**
  * RSGallery2 Gallery display plugin
- * This plugin supports the display of a galleriy in an article   
+ * This plugin supports the display of a gallery in an article
  *
  * This plugin will replace {rsg2_display: template, GID} or 
  * {rsg2_display: template, GID, parameter=value, parameter=value, ...}
  * in an article with the corresponding RSGallery2 gallery using the template 
  *  specified, with as many parameters as you specify
  * 
- * @version      $Id: rsgallery2_gallerydisplay.php  $
  * @package		RSGallery2
  * @subpackage	Content plugin
- * @copyright	Copyright (C) 2008 - 2015 RSGallery2
+ * @copyright	Copyright (C) 2008 - 2017 RSGallery2
  * @license		GNU/GPL, see LICENSE.php
  * @license http://www.gnu.org/copyleft/gpl.html GNU/GPL
  * RSGallery is Free Software
@@ -25,15 +24,22 @@ jimport( 'joomla.plugin.plugin' );
 
 // Load RSGallery2 component (site) language file
 $lang = JFactory::getLanguage();
-$lang->load('com_rsgallery2', JPATH_SITE);
+$extension = 'com_rsgallery2';
+$base_dir = JPATH_SITE;
+$reload = true;
+$lang->load($extension, $base_dir, null, $reload);
 
 // Initialize RSGallery2 
 require_once( JPATH_ROOT.'/administrator/components/com_rsgallery2/init.rsgallery2.php' );
 // ToDo: Remove following line
 //require_once( JPATH_ROOT.'/administrator/components/com_rsgallery2/helpers/parameter.php' );
 
+
+
 /**
- * Class plgContentRsgallery2_gallerydisplay
+ * ... gallerydisplay
+ *
+ * @since version 3.1
  */
 class plgContentRsgallery2_gallerydisplay extends JPlugin {
 
@@ -52,7 +58,8 @@ class plgContentRsgallery2_gallerydisplay extends JPlugin {
 	 * @access      protected
 	 * @param       object  $subject The object to observe
 	 * @param       array   $config  An array that holds the plugin configuration
-	 * @since       3.x
+	 *
+     * @since       3.x
 	 *
 	public function __construct(& $subject, $config)
 	{
@@ -65,21 +72,22 @@ class plgContentRsgallery2_gallerydisplay extends JPlugin {
 	 * @param	string $context	The context of the content being passed to the plugin.
 	 * @param	object $article	The article object.  Note $article->text is also available
 	 * @param	object $params 	The article params
-	 * @param	int $page 		The 'page' number
+	 * @param	int $page 		The 'page' number ($limitstart)
      * @return bool
+     *
+     * @since       3.x
      */
 	public function onContentPrepare($context, &$article, &$params, $page = 0) {
-		// Simple performance check to determine whether bot should process further.
-		if (JString::strpos($article->text, 'rsg2_display') === false) {
+
+		// Simple performant check to determine whether bot should process further.
+		if (strpos($article->text, 'rsg2_display') === false) {
 			return true;
 		}
 
 		try {	
 			// Define the regular expression for the bot.
-			$regex = "#{rsg2_display\:*(.*?)}#s";
-
-			// ??? 		// Get the parameters
-			// $this->rsgallery2_singledisplay_parameters();
+            //$regex = "#{rsg2_display\:*(.*?)}#s";
+            $regex = "#{rsg2_display:*(.*?)}#s";
 
 			// Perform the replacement.
 			$article->text = preg_replace_callback($regex, array(&$this, '_replacer'), $article->text);
@@ -105,14 +113,8 @@ class plgContentRsgallery2_gallerydisplay extends JPlugin {
 		global $rsgConfig;
 		$app = JFactory::getApplication();
 
-		try {	
-			// ToDo: There may be a new way to fetch the Plugin parameters (Get rid of JParameters)
-			// Get the plugin parameters
-			// $pluginName = 'rsgallery2_gallerydisplay';
-			// $plugin = JPluginHelper::getPlugin('content', $pluginName);
-			// Parameters
-			//$pluginParams = new JParameter( $plugin->params );
-			//$pluginDebug = $pluginParams->get('debug', '0');
+		try {
+		    //
             $pluginDebug = $this->params->get('debug', '0');
 
             // Save the default configuration because a user might change the
@@ -121,7 +123,7 @@ class plgContentRsgallery2_gallerydisplay extends JPlugin {
 			// by reference).
 			$original_rsgConfig = clone $rsgConfig;	
 
-			if( $matches ) {
+			if ($matches) {
 			
 				$Rsg2DebugActive = $rsgConfig->get('debug');
 				if ($Rsg2DebugActive)
@@ -152,10 +154,10 @@ class plgContentRsgallery2_gallerydisplay extends JPlugin {
 
 				
 				// Get attributes from matches and create array
-				$attribs = explode(",",$matches[1]);
-				if ( is_array( $attribs ) ) {
+				$attribs = explode(",", $matches[1]);
+				if (is_array($attribs)) {
 					$clean_attribs = array ();
-					foreach ( $attribs as $attributes ) {
+					foreach ($attribs as $attributes) {
 						// Remove spaces (&nbsp;) from attributes and trim with space
 						$clean_attrib = $this->plg_rsg2_display_replacer_clean_data ( $attributes );
 						array_push( $clean_attribs, $clean_attrib );
@@ -196,7 +198,9 @@ class plgContentRsgallery2_gallerydisplay extends JPlugin {
 						$app->enqueueMessage($msg,'message');
 					}
 					return false;
+
 				}
+
 				// Check the template is indeed installed
 				$templateLocation = JPATH_RSGALLERY2_SITE . DS . 'templates' . DS . $template . DS . 'index.php';
 				if( !file_exists( $templateLocation )) {
@@ -205,7 +209,8 @@ class plgContentRsgallery2_gallerydisplay extends JPlugin {
 						$app->enqueueMessage($msg,'message');
 					}
 					return false;
-				}			
+				}
+				
 				// Check we have a gallery id
 				if (!isset($gallery_id)){
 					if ($pluginDebug) {
@@ -214,7 +219,8 @@ class plgContentRsgallery2_gallerydisplay extends JPlugin {
 					}
 					return false;
 				}
-				// Check a gallery with gallery id exists
+
+				// Check if a gallery with gallery id exists
 				// Get gallery details first
 				$db = JFactory::getDbo();
 				$query = $db->getQuery(true);
