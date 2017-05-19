@@ -115,7 +115,7 @@ class plgContentRsgallery2_gallerydisplay extends JPlugin {
 
 		try {
 		    //
-            $pluginDebug = $this->params->get('debug', '0');
+            $DebugActive = $this->params->get('debug', '0');
 
             // Save the default configuration because a user might change the
 			// parameters via the plugin but can also use the plugin multiple
@@ -163,6 +163,9 @@ class plgContentRsgallery2_gallerydisplay extends JPlugin {
 						array_push( $clean_attribs, $clean_attrib );
 					}
 				} else {
+                    if ($DebugActive) {
+                        JLog::add('No attributes', JLog::DEBUG);
+                    }
 					return false;
 				}
 
@@ -193,29 +196,32 @@ class plgContentRsgallery2_gallerydisplay extends JPlugin {
 				// Several checks on template and gallery id - start
 				// Check we have a template name
 				if (!isset($template)) {
-					if ($pluginDebug) {
+					if ($DebugActive) {
 						$msg = JText::_('PLG_CONTENT_RSGALLERY2_GALLERYDISPLAY_NO_TEMPLATE_NAME_GIVEN');
 						$app->enqueueMessage($msg,'message');
+                        JLog::add('Template not found: "' . $template . '"', JLog::DEBUG);
 					}
-					return false;
 
+					return false;
 				}
 
 				// Check the template is indeed installed
 				$templateLocation = JPATH_RSGALLERY2_SITE . DS . 'templates' . DS . $template . DS . 'index.php';
 				if( !file_exists( $templateLocation )) {
-					if ($pluginDebug) {
+					if ($DebugActive) {
 						$msg = JText::sprintf('PLG_CONTENT_RSGALLERY2_GALLERYDISPLAY_TEMPLATE_DIRECTORY_NOT_FOUND', $template);
 						$app->enqueueMessage($msg,'message');
+                        JLog::add('Template location not found: "' . $templateLocation. '"', JLog::DEBUG);
 					}
 					return false;
 				}
-				
+
 				// Check we have a gallery id
 				if (!isset($gallery_id)){
-					if ($pluginDebug) {
+					if ($DebugActive) {
 						$msg = JText::_('PLG_CONTENT_RSGALLERY2_GALLERYDISPLAY_NO_GALLERY_ID_GIVEN');
 						$app->enqueueMessage($msg,'message');
+                        JLog::add('no gallery id found: "' . $gallery_id. '"', JLog::DEBUG);
 					}
 					return false;
 				}
@@ -231,17 +237,19 @@ class plgContentRsgallery2_gallerydisplay extends JPlugin {
 				$galleryDetails = $db->loadAssoc();
 				// Does the gallery exist?
 				if (!$galleryDetails) {
-					if ($pluginDebug) {
+					if ($DebugActive) {
 						$msg = JText::sprintf('PLG_CONTENT_RSGALLERY2_GALLERYDISPLAY_NO_SUCH_GALLERY_ID_EXISTS',$gallery_id);
 						$app->enqueueMessage($msg,'message');
+                        JLog::add('gallery id not found in DB: "' . $gallery_id. '"', JLog::DEBUG);
 					}
 					return false;
 				}
 				// Is the gallery published?
 				if (!$galleryDetails['published']) {
-					if ($pluginDebug) {
+					if ($DebugActive) {
 						$msg = JText::sprintf('PLG_CONTENT_RSGALLERY2_GALLERYDISPLAY_GALLERY_UNPUBLISHED',$galleryDetails['name'],$gallery_id);
 						$app->enqueueMessage($msg,'message');
+                        JLog::add('gallery not published: "' . $gallery_id. '"', JLog::DEBUG);
 					}
 					return false;
 				}
@@ -269,8 +277,12 @@ class plgContentRsgallery2_gallerydisplay extends JPlugin {
 				ob_start();
 				rsgInstance::instance();
 				$content_output = ob_get_contents();
-				ob_end_clean();	
-				
+				ob_end_clean();
+
+                if ($DebugActive) {
+                    JLog::add('$content_output\n' . $content_output . '\n', JLog::DEBUG);
+                }
+
 				// Reset the original request array when finished
 				$_REQUEST 	= $original_request;
 				$_GET 		= $original_get;
