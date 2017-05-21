@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension version="3.0" type="plugin" group="content" method="upgrade">
 	<name>PLG_CONTENT_RSGALLERY2_GALLERYDISPLAY</name>
-	<author>Jonathan DeLaigle, Jonah Braun, Mirjam Kaizer,RSGallery2 Team</author>
-	<creationDate>18 May 2015</creationDate>
-	<copyright>(C) 2012-2016 RSGallery2 Team. All rights reserved.</copyright>
+	<author>Jonathan DeLaigle, Jonah Braun, Mirjam Kaizer, RSGallery2 Team</author>
+	<creationDate>21 May 2017</creationDate>
+	<copyright>(C) 2012-2017 RSGallery2 Team. All rights reserved.</copyright>
 	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
     <authorEmail>team@rsgallery2.nl</authorEmail>
-	<authorUrl>www.rsgallery2.nl</authorUrl>
-	<version>4.0.0</version>
+	<authorUrl>www.rsgallery2.org</authorUrl>
+	<version>4.0.1</version>
 	<description>PLG_CONTENT_RSGALLERY2_GALLERYDISPLAY_XML_DESCRIPTION</description>
 
 	<files>
 		<filename plugin="rsgallery2_gallerydisplay">rsgallery2_gallerydisplay.php</filename>
 		<filename>index.html</filename>
+		<folder>language</folder>
 	</files>
 	
 	<languages folder="language">
