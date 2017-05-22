@@ -193,7 +193,8 @@ class plgContentRsgallery2_gallerydisplay extends JPlugin {
 					}
 				}
 
-				// Several checks on template and gallery id - start
+				//--- Start: Several checks on template and gallery id --------------------------------
+
 				// Check we have a template name
 				if (!isset($template)) {
 					if ($DebugActive) {
@@ -230,11 +231,12 @@ class plgContentRsgallery2_gallerydisplay extends JPlugin {
 				// Get gallery details first
 				$db = JFactory::getDbo();
 				$query = $db->getQuery(true);
-				$query->select('id, name, published'); // Perhaps access could be checked as well
+				$query->select('id, name, published'); // ToDo: Perhaps access could be checked as well
 				$query->from('#__rsgallery2_galleries');
 				$query->where('id = '. (int) $gallery_id);
 				$db->setQuery($query);
 				$galleryDetails = $db->loadAssoc();
+
 				// Does the gallery exist?
 				if (!$galleryDetails) {
 					if ($DebugActive) {
@@ -244,6 +246,7 @@ class plgContentRsgallery2_gallerydisplay extends JPlugin {
 					}
 					return false;
 				}
+
 				// Is the gallery published?
 				if (!$galleryDetails['published']) {
 					if ($DebugActive) {
@@ -253,7 +256,8 @@ class plgContentRsgallery2_gallerydisplay extends JPlugin {
 					}
 					return false;
 				}
-				// Several checks on template and gallery id - end
+				//--- End: Several checks on template and gallery id ---------------------------------
+
 
 				// Cache the current request array to a variable before doing anything
 				$original_request 	= $_REQUEST;
@@ -273,15 +277,17 @@ class plgContentRsgallery2_gallerydisplay extends JPlugin {
 				//JRequest::setVar('rsgTemplate', $template);
 				$input->set ('rsgTemplate', $template);
 
-				// Get the RSGallery2 gallery HTML!
+				//--- Get the RSGallery2 gallery template HTML! -----------------------
 				ob_start();
-				rsgInstance::instance();
+    			rsgInstance::instance(); // With option $showTemplate = true
 				$content_output = ob_get_contents();
 				ob_end_clean();
 
+                /**
                 if ($DebugActive) {
                     JLog::add('$content_output\n' . $content_output . '\n', JLog::DEBUG);
                 }
+                /**/
 
 				// Reset the original request array when finished
 				$_REQUEST 	= $original_request;
