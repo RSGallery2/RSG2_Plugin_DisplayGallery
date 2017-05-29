@@ -31,6 +31,11 @@ Legend:
 ! To do: 2014.11.09
 	Second page of gallery items is not shown  
 
+* --- 4.0.1 --- 2017-05-29 --- whazzup ------------------------------
+
+# slideshow_parth fixed: Multiple slideshows per web form 
+   did distroy view of second gallery 
+
 	
 2015-01-10 finnern - SVN ...
 + Adapted for J!3.x  
