@@ -10,7 +10,7 @@
  * 
  * @package		RSGallery2
  * @subpackage	Content plugin
- * @copyright	Copyright (C) 2008 - 2017 RSGallery2
+ * @copyright	Copyright (C) 2008-2018 RSGallery2 Team
  * @license		GNU/GPL, see LICENSE.php
  * @license http://www.gnu.org/copyleft/gpl.html GNU/GPL
  * RSGallery is Free Software
