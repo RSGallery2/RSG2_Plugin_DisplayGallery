@@ -314,8 +314,10 @@ class plgContentRsgallery2_gallerydisplay extends JPlugin {
 	 * @param	array $attributes An array of attributes
 	 * @return	string
      */
-	function plg_rsg2_display_replacer_clean_data ( $attributes ) {
-	    $attributes = str_replace( "&nbsp;", '', "$attributes" );
-		return trim( $attributes );
+	function plg_rsg2_display_replacer_clean_data ( $attributeIn ) {
+	    $attribute = str_replace( "&nbsp;", '', "$attributeIn" );
+		// $attribute = trim ($attribute); // surprisingly only one blank removed
+		$attribute = preg_replace('/\s/u', '', $attribute); // '/u' -> unicode
+		return $attribute;
 	}	
 }
