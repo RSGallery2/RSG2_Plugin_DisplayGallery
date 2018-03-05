@@ -207,7 +207,7 @@ class plgContentRsgallery2_gallerydisplay extends JPlugin {
 				}
 
 				// Check the template is indeed installed
-				$templateLocation = JPATH_RSGALLERY2_SITE . DS . 'templates' . DS . $template . DS . 'index.php';
+				$templateLocation = JPATH_RSGALLERY2_SITE . '/templates/' . $template . '/index.php';
 				if( !file_exists( $templateLocation )) {
 					if ($DebugActive) {
 						$msg = JText::sprintf('PLG_CONTENT_RSGALLERY2_GALLERYDISPLAY_TEMPLATE_DIRECTORY_NOT_FOUND', $template);
