@@ -7,9 +7,7 @@
 		<type>component</type>
 		<version>4.0.2</version>
 		<downloads>
-			<downloadurl type="upgrade" format="zip">
-			https://github.com/RSGallery2/RSGallery2_Plugin_DisplayGallery/
-			https://github.com/RSGallery2/RSGallery2_DisplayGallery/releases/download/Version_4_0_9/RSGallery2_Plugin_DisplayGallery.4.0.2.zip</downloadurl>
+			<downloadurl type="upgrade" format="zip">https://github.com/RSGallery2/RSGallery2_Plugin_DisplayGallery/releases/download/Version_4_0_2/RSGallery2_Plugin_DisplayGallery.4.0.2.zip</downloadurl>
 		</downloads>
 		<tags>
 			<tag>stable</tag>
