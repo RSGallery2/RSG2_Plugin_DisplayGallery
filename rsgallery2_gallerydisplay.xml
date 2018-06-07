@@ -2,12 +2,12 @@
 <extension version="3.0" type="plugin" group="content" method="upgrade">
 	<name>PLG_CONTENT_RSGALLERY2_GALLERYDISPLAY</name>
 	<author>Jonathan DeLaigle, Jonah Braun, Mirjam Kaizer, RSGallery2 Team</author>
-	<creationDate>21 May 2017</creationDate>
+	<creationDate>07 Jun 2018</creationDate>
 	<copyright>(C) 2012-2018 RSGallery2 Team. All rights reserved.</copyright>
 	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
-    <authorEmail>team@rsgallery2.nl</authorEmail>
+    <authorEmail>team@rsgallery2.org</authorEmail>
 	<authorUrl>www.rsgallery2.org</authorUrl>
-	<version>4.0.1</version>
+	<version>4.0.2</version>
 	<description>PLG_CONTENT_RSGALLERY2_GALLERYDISPLAY_XML_DESCRIPTION</description>
 
 	<files>
@@ -40,5 +40,12 @@
 			</fieldset>
 		</fields>
 	</config>
+	
+	<updateservers>
+		<server type="extension"
+		        priority="1"
+		        name="Github RSGallery2 plugin gallery display updates">https://github.com/RSGallery2/RSGallery2_Plugin_DisplayGallery/raw/master/update.xml
+		</server>
+	</updateservers>
 </extension>
 

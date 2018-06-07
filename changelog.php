@@ -31,6 +31,11 @@ Legend:
 ! To do: 2014.11.09
 	Second page of gallery items is not shown  
 
+* --- 4.0.2 --- 2018-06-06 --- whazzup ------------------------------
+
+^ Pathes to files now written with slashes '../.../...' instead of '...' . DS . '...'
++ Added updateserver file
+
 * --- 4.0.1 --- 2017-05-29 --- whazzup ------------------------------
 
 # slideshow_parth fixed: Multiple slideshows per web form 
