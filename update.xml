@@ -5,6 +5,7 @@
 		<description>Update for matching component rsgallery2 v4.4.1</description>
 		<element>rsgallery2_gallerydisplay</element>
 		<type>plugin</type>
+		<folder>content</folder>
 		<version>4.0.2</version>
 		<downloads>
 			<downloadurl type="upgrade" format="zip">https://github.com/RSGallery2/RSGallery2_Plugin_DisplayGallery/releases/download/Version_4_0_2/RSGallery2_Plugin_DisplayGallery.4.0.2.zip</downloadurl>
