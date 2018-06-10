@@ -1,4 +1,4 @@
-RSGallery2 Gallery Display plugin
+RSGallery2 Display Gallery plugin
 This plugin will replace {rsg2_display: template, GID} or {rsg2_display: template, GID, parameter=value, parameter=value, ...} in an article with the corresponding RSGallery2 gallery using the template specified, with as many parameters as you specify.
 
     template: the name of the template you want to use (required; in a default installation 'semantic' will work).

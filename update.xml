@@ -2,9 +2,9 @@
 <updates>
 	<update>
 		<name>RSGallery2 plugin gallery display update</name>
-		<description>Update matching component rsgallery2 v4.4.1</description>
-		<element>com_rsgallery2</element>
-		<type>component</type>
+		<description>Update for matching component rsgallery2 v4.4.1</description>
+		<element>rsgallery2_gallerydisplay</element>
+		<type>plugin</type>
 		<version>4.0.2</version>
 		<downloads>
 			<downloadurl type="upgrade" format="zip">https://github.com/RSGallery2/RSGallery2_Plugin_DisplayGallery/releases/download/Version_4_0_2/RSGallery2_Plugin_DisplayGallery.4.0.2.zip</downloadurl>
@@ -15,7 +15,7 @@
 		<maintainer>team@rsgallery2.org</maintainer>
 		<maintainerurl>rsgallery2.org</maintainerurl>
 		<targetplatform name="joomla" version="3.*"/>
-		<client>1</client>
+		<client>site</client>
 		<infourl>rsgallery2.org</infourl> 		
 	</update>
 </updates>
