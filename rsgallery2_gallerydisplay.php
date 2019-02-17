@@ -79,14 +79,13 @@ class plgContentRsgallery2_gallerydisplay extends JPlugin {
      */
 	public function onContentPrepare($context, &$article, &$params, $page = 0) {
 
-		// Simple performant check to determine whether bot should process further.
+		// Simple high performance check to determine whether bot should process further.
 		if (strpos($article->text, 'rsg2_display') === false) {
 			return true;
 		}
 
 		try {	
 			// Define the regular expression for the bot.
-            //$regex = "#{rsg2_display\:*(.*?)}#s";
             $regex = "#{rsg2_display:*(.*?)}#s";
 
 			// Perform the replacement.
@@ -172,24 +171,27 @@ class plgContentRsgallery2_gallerydisplay extends JPlugin {
 				// Go over attribs to get template, gid and possible parameters
 				foreach ($clean_attribs as $key => $value) {//$key is 0, 1, etc. $value is semantic, etc.
 					switch ($key) {
-						case 0:	// This is the (required) template, e.g. semantic
+						// template (required), e.g. semantic
+						case 0:
 							if (isset( $clean_attribs[0]) AND (string) $clean_attribs[0]){
 								$template = strtolower( $clean_attribs[0] );
 							} else {
 								$template = Null;
 							}			
 						break;
-						case 1: // This is the (required) gallery id, e.g. 2
+						//  gallery id(required), e.g. 2
+						case 1:
 							if (isset( $clean_attribs[1]) AND (int) $clean_attribs[1]){
 								$gallery_id = $clean_attribs[1];
 							} else {
 								$gallery_id = Null;
 							}			
 						break;
-						default: //These are parameters like displaySearch=0;
-							$pieces = explode("=",$clean_attribs[$key]);
-							// Change the configuration parameter with the value
-							$rsgConfig->$pieces[0] = $pieces[1];
+						// parameters like displaySearch=0;
+						default:
+							// $pieces = explode("=",$clean_attribs[$key]);
+							list($var, $val) = explode("=",$clean_attribs[$key]);
+							$rsgConfig->$var = $val;
 					}
 				}
 

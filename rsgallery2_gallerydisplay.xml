@@ -5,7 +5,7 @@
 	<creationDate>07 Jun 2018</creationDate>
 	<copyright>(C) 2012-2018 RSGallery2 Team. All rights reserved.</copyright>
 	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
-	<authorEmail>team@rsgallery2.org</authorEmail>
+    <authorEmail>team@rsgallery2.org</authorEmail>
 	<authorUrl>www.rsgallery2.org</authorUrl>
 	<version>4.0.2</version>
 	<description>PLG_CONTENT_RSGALLERY2_GALLERYDISPLAY_XML_DESCRIPTION</description>
@@ -44,7 +44,7 @@
 	<updateservers>
 		<server type="extension"
 		        priority="1"
-		        name="Github RSGallery2 plugin display gallery updates">https://github.com/RSGallery2/RSGallery2_Plugin_DisplayGallery/raw/master/update.xml
+		        name="Github RSGallery2 plugin gallery display updates">https://github.com/RSGallery2/RSGallery2_Plugin_DisplayGallery/raw/master/update.xml
 		</server>
 	</updateservers>
 </extension>
