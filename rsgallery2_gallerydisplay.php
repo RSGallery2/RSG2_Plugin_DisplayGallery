@@ -266,11 +266,15 @@ class plgContentRsgallery2_gallerydisplay extends JPlugin {
 				$original_get 		= $_GET;
 				$original_post 		= $_POST;
 
+				//--- patch the input variables ---------------
+
 				//The article has lang, language, Itemid, option, view, catid and id
 				//Get rid of catid and id, change option and view, set gallery_id (gid).
 				$input = JFactory::getApplication()->input;
 				//JRequest::setVar('catid',Null);	//Is there a way to unset this?
-				//JRequest::setVar('id',Null);	//Is there a way to unset this?
+
+				// Id may otherwise try to retrieve a image
+				JRequest::setVar('id',Null);	//Is there a way to unset this?
 				//JRequest::setVar('option','com_rsgallery2');
 				//JRequest::setVar('view', 'gallery');
 
