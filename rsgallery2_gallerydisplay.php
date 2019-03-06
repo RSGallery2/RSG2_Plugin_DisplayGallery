@@ -86,7 +86,8 @@ class plgContentRsgallery2_gallerydisplay extends JPlugin {
 
 		try {	
 			// Define the regular expression for the bot.
-            $regex = "#{rsg2_display:*(.*?)}#s";
+            //$regex = "#{rsg2_display\:*(.*?)}#s";
+		    $regex = "/\{rsg2_display:(.*?)\}/";
 
 			// Perform the replacement.
 			$article->text = preg_replace_callback($regex, array(&$this, '_replacer'), $article->text);
