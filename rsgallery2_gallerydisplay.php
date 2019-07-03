@@ -30,7 +30,8 @@ $reload = true;
 $lang->load($extension, $base_dir, null, $reload);
 
 // Initialize RSGallery2 
-require_once( JPATH_ROOT.'/administrator/components/com_rsgallery2/init.rsgallery2.php' );
+//require_once( JPATH_ROOT.'/administrator/components/com_rsgallery2/init.rsgallery2.php' );
+require_once( JPATH_ADMINISTRATOR.'/components/com_rsgallery2/init.rsgallery2.php' );
 // ToDo: Remove following line
 //require_once( JPATH_ROOT.'/administrator/components/com_rsgallery2/helpers/parameter.php' );
 
