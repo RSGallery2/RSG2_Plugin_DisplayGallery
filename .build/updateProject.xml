@@ -61,9 +61,9 @@
 	.........................................................................	
 	-->
 	
-	<property name="type" value="Module" override="true" />
-    <property name="name" value="LatestGalleries" override="true" />
-	<property name="extension" value="mod_rsgallery2_latest_galleries" />
+    <property name="type" value="Plugin" override="true" />
+    <property name="name" value="DisplayGallery" override="true" />
+	<property name="extension" value="rsgallery2_gallerydisplay" />
 
 	<!-- 
 	.........................................................................
@@ -134,7 +134,7 @@
     <!-- File set all folders *.php -->
     <fileset dir="${root}" id="allFoldersSetXml">
         <include name="*.xml" />
-        <include name="${tmpl}/**/*.xml" />
+        <!--include name="${tmpl}/**/*.xml" /-->
         <!--include name="${css}/**/*.xml" />
         <include name="${images}/**/*.xml" />
         <include name="${language}/**/*.xml" />

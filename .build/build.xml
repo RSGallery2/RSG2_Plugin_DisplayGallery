@@ -55,8 +55,6 @@
 	    <!-- additional naming postfix -->
     <!--property name="build.postfix" value="prepare." override="true" /-->
     <property name="build.postfix" value="" override="true" />
-    <property name="type" value="Module" override="true" />
-    <property name="name" value="LatestGalleries" override="true" />
 
 	<!-- 
 	.........................................................................
@@ -64,9 +62,9 @@
 	.........................................................................	
 	-->
 	
-	<property name="type" value="Module" override="true" />
-    <property name="name" value="LatestGalleries" override="true" />
-	<property name="extension" value="mod_rsgallery2_latest_galleries" />
+    <property name="type" value="Plugin" override="true" />
+    <property name="name" value="DisplayGallery" override="true" />
+	<property name="extension" value="rsgallery2_gallerydisplay" />
 
 	<!-- 
 	.........................................................................
@@ -124,10 +122,10 @@
     <!-- File set all folders -->
     <fileset dir="${root}" id="allFoldersSet">
         <!--include name="**" /-->
-        <include name="${css}/**" />
-        <include name="${images}/**" />
+        <!--include name="${css}/**" /-->
+        <!--include name="${images}/**" /-->
         <include name="${language}/**" />
-        <include name="${tmpl}/**" />
+        <!--include name="${tmpl}/**" /-->
 
 		<!-- may be accidentally copied from installation server -->
         <!--exclude name="rsgallery2.xml" /-->
@@ -227,7 +225,7 @@
         <copy file="${root}/changelog.php" tofile="${buildDir}/tmp/changelog.php" />
         <copy file="${root}/index.html" tofile="${buildDir}/tmp/index.html" />
         <copy file="${root}/LICENSE.txt" tofile="${buildDir}/tmp/LICENSE.txt" />
-        <copy file="${root}/Rsg2DbSelections.php" tofile="${buildDir}/tmp/Rsg2DbSelections.php" />
+        <copy file="${root}/readme.txt" tofile="${buildDir}/tmp/readme.txt" />
 
         <!--copy file="${admin}/install.php" tofile="${buildDir}/tmp/install.php" /-->
         <echo msg="Copy was successful" />
