@@ -2,7 +2,7 @@
 /**
 * @version $Id:$
 * @package plg_rsg2_gallerydisplay
-* @copyright Copyright (C) 2007-2018 RSGallery2 Team. (Code changed for Joomla 2.5 and addition of clearfloat and modal behaviour)
+* @copyright Copyright (C) 2007-2019 RSGallery2 Team. (Code changed for Joomla 2.5 and addition of clearfloat and modal behaviour)
 * @license http://www.gnu.org/copyleft/gpl.html GNU/GPL, see LICENSE.php
 * 
 * This plugin will replace {rsg2_display: template, GID} or 
