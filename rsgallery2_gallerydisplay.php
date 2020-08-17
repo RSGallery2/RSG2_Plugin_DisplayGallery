@@ -87,7 +87,7 @@ class plgContentRsgallery2_gallerydisplay extends JPlugin {
 		}
 
 		try {	
-			// Define the regular expression for the plugin
+			// Define the regular expression for the bot.
             //$regex = "#{rsg2_display\:*(.*?)}#s";
 		    $regex = "/\{rsg2_display:(.*?)\}/";
 
@@ -198,9 +198,13 @@ class plgContentRsgallery2_gallerydisplay extends JPlugin {
 					break;
 					// parameters like displaySearch=0;
 					default:
-						// $pieces = explode("=",$clean_attribs[$key]);
-						list($var, $val) = explode("=",$clean_attribs[$key]);
-						$rsgConfig->$var = $val;
+                        $pieces = explode("=", $clean_attribs[$key]);
+                        // Change the configuration parameter with the value
+                        if (count($pieces) > 1) {
+                            //$rsgConfig->$pieces[0] = $pieces[1];
+                            //$rsgConfig [$pieces] = $pieces[1];
+                            $rsgConfig->set ($pieces[0], $pieces[1]);
+                        }
 				}
 			}
 
